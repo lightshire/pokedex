@@ -3,6 +3,7 @@
 import usePokemonList from "@/modules/pokemon/hooks/usePokemonList";
 import PokemonListItemSection from "@/modules/pokemon/components/PokemonListItemSection";
 import PaginationSection from "@/components/PaginationSection";
+import PokemonListLoadingSection from "@/modules/pokemon/components/PokemonListLoadingSection";
 
 const PokemonList = ({ page, limit }: { page: number; limit: number }) => {
   const {
@@ -22,12 +23,14 @@ const PokemonList = ({ page, limit }: { page: number; limit: number }) => {
         currentLimit={currentLimit}
       />
       <div className={"space-y-[8px] p-[8px]"}>
-        {pokemonList.map((pokemonListItem) => (
-          <PokemonListItemSection
-            key={`pokemon-list-item-${pokemonListItem.id}`}
-            pokemonListItem={pokemonListItem}
-          />
-        ))}
+        {query.isSuccess &&
+          pokemonList.map((pokemonListItem) => (
+            <PokemonListItemSection
+              key={`pokemon-list-item-${pokemonListItem.id}`}
+              pokemonListItem={pokemonListItem}
+            />
+          ))}
+        {query.isLoading && <PokemonListLoadingSection />}
       </div>
       {!query.isLoading && (
         <PaginationSection

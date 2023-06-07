@@ -28,6 +28,7 @@ const usePokemonList = (page: number, limit: number) => {
       if (parseInt(queryParams.page || "1") !== currentPage) {
         setQueryParams({
           page: currentPage + "",
+          limit: limit + "",
         });
       }
     }
@@ -38,6 +39,7 @@ const usePokemonList = (page: number, limit: number) => {
       if (parseInt(queryParams.limit || "1") !== currentLimit) {
         setQueryParams({
           limit: limit + "",
+          page: currentPage + "",
         });
       }
     }
@@ -52,6 +54,7 @@ const usePokemonList = (page: number, limit: number) => {
     query.refetch();
     setQueryParams({
       limit: limit + "",
+      page: currentPage + "",
     });
   };
 

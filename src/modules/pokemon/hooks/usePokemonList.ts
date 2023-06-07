@@ -7,10 +7,11 @@ const usePokemonList = (page: number = 1) => {
   const query = useQuery([`pokemon-list-${page}`], () => getPokemonList(page));
   const pokemonList = useMemo<PokemonListItem[]>(() => {
     if (query.data) {
-      return query.data.results;
+      return query.data.pokemon_v2_pokemon;
     }
     return [];
-  }, [query.data?.results]);
+  }, [query.data]);
+
   return {
     query,
     pokemonList,

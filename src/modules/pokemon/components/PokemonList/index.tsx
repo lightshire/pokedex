@@ -5,11 +5,12 @@ import PokemonListItemSection from "@/modules/pokemon/components/PokemonListItem
 
 const PokemonList = () => {
   const { query, pokemonList } = usePokemonList();
+
   return (
     <div className={"space-y-[8px] p-[8px]"}>
       {pokemonList.map((pokemonListItem) => (
         <PokemonListItemSection
-          key={`pokemon-list-item-${pokemonListItem.url}`}
+          key={`pokemon-list-item-${pokemonListItem.id}`}
           pokemonListItem={pokemonListItem}
         />
       ))}

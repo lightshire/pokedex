@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS PokeDex
 
-## Getting Started
+## Technologies Used
 
-First, run the development server:
+- NextJS 13.4 App Router
+- Typescript
+- React-query
+- graph-request
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Implementation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The pokedex app is a simulation of the pokedex usable in the game and in anime. It implements and highlights
+the capabilities of the architecture and technologies used. With the Poke API, the application was implemented to be able 
+to be paginated and can change how many limit was changed.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+It also implemented SSR and the capabilities hydrating react-query initial requests to absorb the heavy and
+expensive usage from the frontend with still being able to use the functions on the front end.
 
-## Learn More
+Overall, only two requests where created 1) the list API, and the 2) the main pokemon API. 
 
-To learn more about Next.js, take a look at the following resources:
+One of the criteria was to ensure that the traits were also implemented on the list. Scouring the API, I have stumbled
+into their GraphQL implementation, it was a good time also to showcase the capability of react-query with graphql.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Rest API was implemented for the 2nd API endpoint.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -13,8 +13,6 @@ const PokemonListItemSection = ({
     return getPokemonImageFromId(pokemonListItem.id);
   }, [pokemonListItem]);
 
-  console.log(pokemonListItem.pokemon_v2_pokemontypes);
-
   return (
     <Link
       className={

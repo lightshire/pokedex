@@ -21,7 +21,7 @@ const Pokemon = ({ pokemonName }: { pokemonName: string }) => {
           />
         )}
       </div>
-      <div className={"flex gap-[16px]"}>
+      <div className={"flex gap-[16px] px-[8px]"}>
         <div className={"flex-1 space-y-[8px]"}>
           <PokemonStatPill
             value={getStatByKeyName("attack")}

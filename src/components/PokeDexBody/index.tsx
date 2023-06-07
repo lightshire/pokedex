@@ -23,7 +23,9 @@ const PokeDexBody: FC<PropsWithChildren> = ({ children }) => {
         <div
           className={"font-start-2p text-white text-[16px] text-right flex-1"}
         >
-          <h3>NextJS Pokedex</h3>
+          <h3>
+            NextJS <br /> Pokedex
+          </h3>
         </div>
       </div>
       <div className={"flex-1 px-[16px]  h-auto overflow-y-auto flex-grow"}>

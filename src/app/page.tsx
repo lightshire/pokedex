@@ -4,16 +4,21 @@ import getPokemonListByGraphQL from "@/modules/pokemon/requests/getPokemonListBy
 import { dehydrate } from "@tanstack/query-core";
 import HydrateProvider from "@/modules/react-query/components/HydrateProvider";
 
-export default async function Home() {
+export default async function Home({
+  searchParams: { page = 1, limit = 20 },
+}: {
+  page?: string;
+  limit?: string;
+}) {
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(["pokemon-list-1"], () =>
-    getPokemonListByGraphQL(1)
+  await queryClient.prefetchQuery([`pokemon-list-${page}`], () =>
+    getPokemonListByGraphQL(page, limit)
   );
   const dehydratedState = dehydrate(queryClient);
 
   return (
     <HydrateProvider state={dehydratedState}>
-      <PokemonList />
+      <PokemonList page={parseInt(page)} />
     </HydrateProvider>
   );
 }

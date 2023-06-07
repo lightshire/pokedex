@@ -1,12 +1,17 @@
 import PokemonListResponse from "@/modules/pokemon/types/PokemonListResponse";
 import request, { gql } from "graphql-request";
 
-const LIMIT = 20;
 const URL = "https://beta.pokeapi.co/graphql/v1beta";
 
-const QUERY = gql`
+const getPokemonListByGraphQL = async (
+  page: number = 1,
+  limit: number = 20
+) => {
+  const offset = (page - 1) * limit;
+
+  const QUERY = gql`
   query getPokemonlistQuery {
-    pokemon_v2_pokemon(offset: 0, limit: ${LIMIT}) {
+    pokemon_v2_pokemon(offset: ${offset}, limit: ${limit}) {
       name,
       id
       pokemon_v2_pokemontypes {
@@ -19,8 +24,6 @@ const QUERY = gql`
   }
 `;
 
-const getPokemonListByGraphQL = async (page: number = 1) => {
-  const offset = (page - 1) * LIMIT;
   const response = await request<PokemonListResponse>(URL, QUERY);
   return response;
 };

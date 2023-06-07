@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`bg-black h-screen flex items-center justify-center py-[48px] px-[24px]`}
+        className={`bg-black h-screen flex items-center justify-center py-[16px] px-[16px]`}
       >
         <GlobalProvider>
           <PokeDexBody>{children}</PokeDexBody>

@@ -4,15 +4,17 @@ import { useEffect, useMemo, useState } from "react";
 import PokemonListItem from "@/modules/pokemon/types/PokemonListItem";
 import useQueryParams from "@/modules/global/hooks/useQueryParams";
 
-const usePokemonList = (page: number) => {
+const usePokemonList = (page: number, limit: number) => {
   const [currentPage, setCurrentPage] = useState(page);
+  const [currentLimit, setCurrentLimit] = useState(limit);
+
   const { queryParams, setQueryParams } = useQueryParams<{
     page?: string;
     limit?: string;
   }>();
 
   const query = useQuery([`pokemon-list-${currentPage}`], () =>
-    getPokemonListByGraphQL(currentPage)
+    getPokemonListByGraphQL(currentPage, limit)
   );
   const pokemonList = useMemo<PokemonListItem[]>(() => {
     if (query.data) {
@@ -20,10 +22,6 @@ const usePokemonList = (page: number) => {
     }
     return [];
   }, [query.data]);
-
-  const onNextPage = () => setCurrentPage(currentPage + 1);
-
-  const onPrevPage = () => setCurrentPage(currentPage - 1);
 
   useEffect(() => {
     if (query.isSuccess) {
@@ -35,11 +33,36 @@ const usePokemonList = (page: number) => {
     }
   }, [currentPage, query.isSuccess]);
 
+  useEffect(() => {
+    if (query.isSuccess) {
+      if (parseInt(queryParams.limit || "1") !== currentLimit) {
+        setQueryParams({
+          limit: limit + "",
+        });
+      }
+    }
+  }, [limit, query.isSuccess]);
+
+  const onNextPage = () => setCurrentPage(currentPage + 1);
+
+  const onPrevPage = () => currentPage !== 1 && setCurrentPage(currentPage - 1);
+
+  const changeLimit = async (limit: number) => {
+    await setCurrentLimit(limit);
+    query.refetch();
+    setQueryParams({
+      limit: limit + "",
+    });
+  };
+
   return {
     query,
     pokemonList,
     onNextPage,
     onPrevPage,
+    setCurrentLimit,
+    currentLimit,
+    changeLimit,
   };
 };
 

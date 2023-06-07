@@ -13,6 +13,8 @@ const PokemonListItemSection = ({
     return getPokemonImageFromId(pokemonListItem.id);
   }, [pokemonListItem]);
 
+  console.log(pokemonListItem.pokemon_v2_pokemontypes);
+
   return (
     <Link
       className={
@@ -26,8 +28,22 @@ const PokemonListItemSection = ({
         width={64}
         height={64}
       />
-      <span className={"font-start-2p text-[16px]"}>
+      <span className={"font-start-2p text-[16px] flex flex-col"}>
         {pokemonListItem.name}
+        <span lang={"flex gap-[8px]"}>
+          {pokemonListItem.pokemon_v2_pokemontypes.map((type) => {
+            return (
+              <span
+                key={`pokemon-type-${pokemonListItem.name}-${type.pokemon_v2_type.name}`}
+                className={
+                  "text-[9px] flex-none text-white bg-poke-gray p-[2px] rounded-[2px] inline-block mr-[8px]"
+                }
+              >
+                {type.pokemon_v2_type.name}
+              </span>
+            );
+          })}
+        </span>
       </span>
     </Link>
   );

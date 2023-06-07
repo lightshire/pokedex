@@ -19,10 +19,10 @@ const QUERY = gql`
   }
 `;
 
-const getPokemonList = async (page: number = 1) => {
+const getPokemonListByGraphQL = async (page: number = 1) => {
   const offset = (page - 1) * LIMIT;
   const response = await request<PokemonListResponse>(URL, QUERY);
   return response;
 };
 
-export default getPokemonList;
+export default getPokemonListByGraphQL;

@@ -39,9 +39,9 @@ const PokeDexBody: FC<PropsWithChildren> = ({ children }) => {
           <DirectionalButtons />
           <div className={"flex-1"}>
             <ScreenComponent>
-              Put the description here <br />
-              More description <br />
-              Mor
+              The directional button on the left side <br />
+              is not yet functional <br />
+              Please navigate via the pokedex screen
             </ScreenComponent>
           </div>
         </div>
